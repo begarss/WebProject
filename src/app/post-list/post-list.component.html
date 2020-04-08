@@ -1,0 +1,39 @@
+<article style="margin-top: 30px" class="media" *ngFor="let post of posts; index as postId">
+
+  <div  class="media-content">
+    <div class="content" >
+      <div class="info">
+        <strong><a [routerLink]="['/products', postId]" [title]="post.title ">
+          {{ post.title }}
+        </a></strong>
+        <br>
+        <span class="date">{{post.date}}</span>
+
+      </div>
+      <p>
+        <br>
+
+<!--        <img alt="" src="{{post.image}}">-->
+
+        Description: {{post.description }}
+
+      </p>
+    </div>
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-reply"></i></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-heart"></i></span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="media-right">
+    <button class="delete"></button>
+  </div>
+</article>

@@ -1,0 +1,13 @@
+<aside class="menu" style="background-color: whitesmoke; padding: 25px 25px 20px; border-radius: 4px ">
+  <h1 class="menu-label" style="font-size: 20px">
+    Category
+  </h1>
+  <ul class="menu-list" style="font-size: 18px">
+    <li *ngFor="let category of categories  index as id">
+      <a  routerLink="/categoryList/{{category.id}}">
+        <span class="badge">{{category.name}}</span>
+      </a>
+
+    </li>
+  </ul>
+</aside>
