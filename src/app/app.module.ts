@@ -12,6 +12,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {CategoryComponent} from './category/category.component';
 import {CategoryListComponent} from './category-list/category-list.component';
 import {PostListComponent} from './post-list/post-list.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {PostListComponent} from './post-list/post-list.component';
     HomeComponent,
     CategoryComponent,
     CategoryListComponent,
-    PostListComponent
+    PostListComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
