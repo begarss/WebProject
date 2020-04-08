@@ -12,7 +12,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {CategoryComponent} from './category/category.component';
 import {CategoryListComponent} from './category-list/category-list.component';
 import {PostListComponent} from './post-list/post-list.component';
-import { AboutComponent } from './about/about.component';
+import {AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { AboutComponent } from './about/about.component';
     CategoryComponent,
     CategoryListComponent,
     PostListComponent,
-    AboutComponent
+    AboutComponent,
+    ContactComponent,
+    LoginComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
