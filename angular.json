@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OnlineComplaints"
+    }
+  },
+  "defaultProject": "OnlineComplaints",
+  "cli": {
+    "analytics": "38b6da77-f47d-434f-a127-e3fb9c263039"
+  }
 }
