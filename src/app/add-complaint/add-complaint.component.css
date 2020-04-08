@@ -1,0 +1,80 @@
+.ad {
+    position: absolute;
+    top: 170px;
+    width: 80%;
+    justify-content: center;
+    margin-left: 30%;
+}
+.item
+{
+    width: 300px;
+    padding: 10px;
+
+}
+form {
+    width: 80%;
+    justify-self: center;
+    padding-bottom: 2rem;
+}
+input {
+    position: relative;
+    text-align: left;
+    vertical-align: text-top;
+    box-sizing: border-box;
+    
+}
+#article {
+    width: 500px;
+    height: 40px;
+    
+    
+   
+}
+#tag{
+    width: 500px;
+}
+textarea{
+    width: 500px;
+    height: 100px;
+    resize: vertical;
+}
+input[type="text"]
+{
+    text-align: left;
+    
+
+}
+#type {
+    width: 500px;
+}
+
+.back{
+    color: white;
+    background-color: #2e99dd;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    border: none;
+    text-decoration: none;
+    top: 100px;
+    margin-left: 50px;
+    
+}
+.publish {
+    color: white;
+    background-color: #2e99dd;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    border: none;
+    text-decoration: none;
+    display: right;
+    position: absolute;
+    left: 300px;
+    top: 300px;
+}
+textarea
+{
+    resize: none;
+    outline: none;
+}

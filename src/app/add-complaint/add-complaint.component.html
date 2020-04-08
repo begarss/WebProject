@@ -1,0 +1,23 @@
+<button class="back" (click)="backClicked()">Back</button>
+<div class="ad">
+   
+    
+    <form>
+        <div class="item">
+            <input type="text" id="article" name="article" [(ngModel)]="paperModel.article" [ngModelOptions]="{standalone: true}"  placeholder="Article Title">
+        </div>
+        <div class="item">
+            <input type="text"id="type" name="type"  [(ngModel)]="paperModel.type" placeholder="What's this article about?">
+        </div>
+        <div class="item">
+            <textarea name="blog"  [(ngModel)]="paperModel.blog" placeholder="Write your article (in markdown)"></textarea>
+        </div>
+        <div class="item">
+            <input type="text" name="tag" id="tag" [(ngModel)]="paperModel.tag" placeholder="Enter tags">
+        </div> 
+        
+        <button class="publish">
+            Publish Article
+        </button>
+    </form>
+</div>
