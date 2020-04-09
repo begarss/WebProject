@@ -1,23 +1,47 @@
-<button class="back" (click)="backClicked()">Back</button>
-<div class="ad">
-   
-    
+<!--  <button (click)="backClicked()" class="back">Back</button>-->
+<div class="container" style="width: 80% ; margin: auto; margin-top: 4rem">
+  <div class="row">
+
+
+    <h1 style="font-size: xx-large; text-align: center">Add new complaint</h1>
+
     <form>
-        <div class="item">
-            <input type="text" id="article" name="article" [(ngModel)]="paperModel.article" [ngModelOptions]="{standalone: true}"  placeholder="Article Title">
+      <div class="item">
+        <input [(ngModel)]="paperModel.article" [ngModelOptions]="{standalone: true}" class="input is-rounded"
+               id="article" name="article"
+               placeholder="Article Title" type="text">
+      </div>
+
+      <div class="item">
+        <textarea [(ngModel)]="paperModel.blog" class="textarea" name="blog"
+                  placeholder="Write your article (in markdown)"></textarea>
+      </div>
+      <div class="item">
+        <div [(ngModel)]="paperModel.tag" class="select is-rounded">
+          <select>
+            <option>Select category</option>
+            <option>Teachers</option>
+            <option>Education</option>
+            <option>Administration</option>
+            <option>Canteen</option>
+            <option>Library</option>
+            <option>Students</option>
+          </select>
         </div>
-        <div class="item">
-            <input type="text"id="type" name="type"  [(ngModel)]="paperModel.type" placeholder="What's this article about?">
-        </div>
-        <div class="item">
-            <textarea name="blog"  [(ngModel)]="paperModel.blog" placeholder="Write your article (in markdown)"></textarea>
-        </div>
-        <div class="item">
-            <input type="text" name="tag" id="tag" [(ngModel)]="paperModel.tag" placeholder="Enter tags">
-        </div> 
-        
-        <button class="publish">
-            Publish Article
-        </button>
+      </div>
+
+      <div class="field is-grouped is-grouped-centered" style="margin-top: 2rem">
+        <p class="control">
+          <a class="button is-info">
+            Submit
+          </a>
+        </p>
+        <p class="control">
+          <a class="button is-light">
+            Cancel
+          </a>
+        </p>
+      </div>
     </form>
+  </div>
 </div>

@@ -1,39 +1,33 @@
-<article style="margin-top: 30px" class="media" *ngFor="let post of posts; index as postId">
+<h1 class="title is-1" style="text-align: center; margin: 28px">Latest complaints</h1>
+<article *ngFor="let post of posts; index as postId" class="media" style="margin-top: 30px">
 
-  <div  class="media-content">
-    <div class="content" >
+  <div class="media-content">
+    <div class="content">
       <div class="info">
-        <strong><a [routerLink]="['/products', postId]" [title]="post.title ">
-          {{ post.title }}
-        </a></strong>
+        <h3 class="title is-4" style="margin-bottom: -1.5rem;">
+          <strong><a routerLink="/post/{{post.id}}" [title]="post.title ">
+            {{ post.title }}
+          </a></strong>
+        </h3>
         <br>
-        <span class="date">{{post.date}}</span>
+        <span class="date">{{post.date}} | <strong>{{post.author}}</strong> | <strong >{{getCategoryName(post.categoryId)}}</strong></span>
 
       </div>
-      <p>
-        <br>
+      <br>
 
-<!--        <img alt="" src="{{post.image}}">-->
+      <!--        <img alt="" src="{{post.image}}">-->
 
-        Description: {{post.description }}
+      <div ellipsis="...Read More" (ellipsis-click-more)=open(post.id.valueOf()) style="width: 80%; height: 50px">{{post.description}}</div>
 
-      </p>
     </div>
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-reply"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-heart"></i></span>
-        </a>
-      </div>
-    </nav>
+    <div class="likes">
+
+
+      <fa-icon [icon]="thumb" style="margin-right: 10px; color: #2e99dd"></fa-icon>
+      <label *ngIf="post.likes " style="margin-right: 10px">{{post.likes}}</label>
+      <fa-icon [icon]="thumbD" style="margin-right: 10px; color: #fc4820"></fa-icon>
+      <label>{{post.dislikes}}</label>
+    </div>
   </div>
-  <div class="media-right">
-    <button class="delete"></button>
-  </div>
+
 </article>

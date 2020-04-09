@@ -12,6 +12,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {CategoryComponent} from './category/category.component';
 import {CategoryListComponent} from './category-list/category-list.component';
 import {PostListComponent} from './post-list/post-list.component';
+import {AddComplaintComponent} from './add-complaint/add-complaint.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {EllipsisModule} from 'ngx-ellipsis';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,9 @@ import {PostListComponent} from './post-list/post-list.component';
     HomeComponent,
     CategoryComponent,
     CategoryListComponent,
-    PostListComponent
+    PostListComponent,
+    AddComplaintComponent,
+    PostDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -28,11 +34,15 @@ import {PostListComponent} from './post-list/post-list.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    FontAwesomeModule,
+
+
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
 // and returns simulated server responses.
 // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false})
+      InMemoryDataService, {dataEncapsulation: false}),
+    EllipsisModule
   ],
   providers: [],
   bootstrap: [AppComponent]

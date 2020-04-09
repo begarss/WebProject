@@ -1,18 +1,39 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
 import {Category, CATEGORY} from './category';
+import {Post} from './posts';
+import {catchError, filter, map, tap} from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {PostService} from './post.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
+  constructor(private http: HttpClient,
+              private postService: PostService
+  ) {
+  }
 
-  constructor() { }
+  private posts: Observable<Post[]>;
+  private heroesUrl = 'api/categories';
 
   getCategory(id: number): Observable<Category> {
-    return of(CATEGORY.find(category => category.id === id));
-  }
-  getCategories(): Observable<Category[]> {
-    return of(CATEGORY);
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.get<Category>(url);
   }
 
+  // getCategories(): Observable<Category[]> {
+  //   return of(CATEGORY);
+  // }
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.heroesUrl);
+  }
+
+  getPostsByCat(id: number) {
+    this.posts = this.postService.getPosts();
+    // tslint:disable-next-line:triple-equals
+    return this.posts.pipe(map(posts => posts.filter(res => res.categoryId == id)));
+  }
 }

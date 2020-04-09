@@ -1,15 +1,16 @@
 import DateTimeFormat = Intl.DateTimeFormat;
 
 export interface Post {
-  post_id: number;
+  id: number;
   author: string;
   image: ImageBitmap;
   date: DateTimeFormat;
   title: string;
   description: string;
   categoryId: number;
+  likes: 0;
+  dislikes: 0;
 }
-
 
 
 /*
