@@ -16,6 +16,10 @@ import {AddComplaintComponent} from './add-complaint/add-complaint.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {EllipsisModule} from 'ngx-ellipsis';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import {AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,12 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     CategoryListComponent,
     PostListComponent,
     AddComplaintComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    PostListComponent,
+    AboutComponent,
+    ContactComponent,
+    LoginComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
