@@ -17,7 +17,6 @@ const routes: Routes = [
   {path: 'post/:id', component: PostDetailComponent},
   {path: 'add', component: AddComplaintComponent},
   { path: 'categoryPostsList/:id', component: CategoryListComponent },
-
   {path: 'about', component: AboutComponent},
   {path: 'signin', component: SigninComponent},
   {path: 'login', component: LoginComponent},
