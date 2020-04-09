@@ -31,10 +31,10 @@ export class PostListComponent implements OnInit {
     this.categoriesService.getCategories().subscribe(cat => this.categories = cat);
   }
 
-  getCategoryName(id: number): string {
-    this.categoriesService.getCategory(id).subscribe(cat => this.category = cat);
-    return this.category.name;
-  }
+  // getCategoryName(id: number): string {
+  //   this.categoriesService.getCategory(id).pipe();
+  //   return this.category.name;
+  // }
 
   getPosts(): void {
     this.postService.getPosts().subscribe(posts => this.posts = posts);

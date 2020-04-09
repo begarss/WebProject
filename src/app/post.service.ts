@@ -15,10 +15,14 @@ export class PostService {
     private messageService: MessageService
   ) {
   }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   private heroesUrl = 'api/posts';  // URL to web api
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }
+
   /** GET heroes from the server */
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.heroesUrl)
@@ -33,6 +37,7 @@ export class PostService {
       catchError(this.handleError<Post>(`getHero id=${id}`))
     );
   }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -52,4 +57,12 @@ export class PostService {
       return of(result as T);
     };
   }
+
+  addPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(this.heroesUrl, post, this.httpOptions).pipe(
+      tap((newPost: Post) => this.log(`added post w/ id=${newPost.id}`)),
+      catchError(this.handleError<Post>('addPost'))
+    );
+  }
+
 }

@@ -7,18 +7,18 @@
 
     <form>
       <div class="item">
-        <input [(ngModel)]="paperModel.article" [ngModelOptions]="{standalone: true}" class="input is-rounded"
+        <input #title class="input is-rounded"
                id="article" name="article"
                placeholder="Article Title" type="text">
       </div>
 
       <div class="item">
-        <textarea [(ngModel)]="paperModel.blog" class="textarea" name="blog"
+        <textarea #details class="textarea" name="blog"
                   placeholder="Write your article (in markdown)"></textarea>
       </div>
       <div class="item">
-        <div [(ngModel)]="paperModel.tag" class="select is-rounded">
-          <select>
+        <div class="select is-rounded">
+          <select #cat>
             <option>Select category</option>
             <option>Teachers</option>
             <option>Education</option>
@@ -32,7 +32,8 @@
 
       <div class="field is-grouped is-grouped-centered" style="margin-top: 2rem">
         <p class="control">
-          <a class="button is-info">
+          <a (click)="add(title.value, details.value, 'anonim',  2); "
+             class="button is-info">
             Submit
           </a>
         </p>

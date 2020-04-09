@@ -1,16 +1,16 @@
 <h1 class="title is-1" style="text-align: center; margin: 28px">Latest complaints</h1>
 <article *ngFor="let post of posts; index as postId" class="media" style="margin-top: 30px">
 
-  <div class="media-content">
+  <div class="media-content" >
     <div class="content">
-      <div class="info">
+      <div class="info" >
         <h3 class="title is-4" style="margin-bottom: -1.5rem;">
           <strong><a routerLink="/post/{{post.id}}" [title]="post.title ">
             {{ post.title }}
           </a></strong>
         </h3>
-        <br>
-        <span class="date">{{post.date}} | <strong>{{post.author}}</strong> | <strong >{{getCategoryName(post.categoryId)}}</strong></span>
+        <br >
+        <span class="date">{{post.date}} | <strong>{{post.author}}</strong> | <strong  >{{ post.categoryId }}</strong></span>
 
       </div>
       <br>

@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
+import {formatDate, Location} from '@angular/common';
+import {PostService} from '../post.service';
+import {Post} from '../posts';
+import DateTimeFormat = Intl.DateTimeFormat;
 
 @Component({
   selector: 'app-add-complaint',
@@ -7,17 +10,11 @@ import {Location} from '@angular/common';
   styleUrls: ['./add-complaint.component.css']
 })
 export class AddComplaintComponent implements OnInit {
-  paperModel =
-    {
-      article: '',
-      type: '',
-      blog: '',
-      tag: ''
+  posts: Post[];
 
-    };
 
-  constructor(private location: Location,
-              ) {
+  constructor(private location: Location, private postService: PostService
+  ) {
   }
 
   ngOnInit(): void {
@@ -27,8 +24,20 @@ export class AddComplaintComponent implements OnInit {
     this.location.back();
   }
 
-  onSubmit(): void {
-    console.log(this.paperModel);
-    //this.paperService.create(this.paperService);
+  add(title: string, description: string, author: string,  categoryId: number): void {
+    title = title.trim();
+    description = description.trim();
+    if (!title) {
+      return;
+    }
+    this.postService.addPost({title, description, author,  categoryId} as Post)
+      .subscribe(post => {
+        this.posts.push(post);
+      });
   }
+
+  // onSubmit(): void {
+  //   console.log(this.paperModel);
+  //   //this.paperService.create(this.paperService);
+  // }
 }
