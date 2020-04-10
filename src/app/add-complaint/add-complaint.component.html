@@ -19,20 +19,20 @@
       <div class="item">
         <div class="select is-rounded">
           <select #cat>
-            <option>Select category</option>
-            <option>Teachers</option>
-            <option>Education</option>
-            <option>Administration</option>
-            <option>Canteen</option>
-            <option>Library</option>
-            <option>Students</option>
+            <option >Select category</option>
+            <option value="1">Teachers</option>
+            <option value="2">Education</option>
+            <option value="3">Administration</option>
+            <option value="4">Canteen</option>
+            <option value="5">Library</option>
+            <option value="6">Students</option>
           </select>
         </div>
       </div>
 
       <div class="field is-grouped is-grouped-centered" style="margin-top: 2rem">
         <p class="control">
-          <a (click)="add(title.value, details.value, 'anonim',  2); "
+          <a (click)="add(title.value, details.value, 'anonim',  cat.value); "
              class="button is-info">
             Submit
           </a>

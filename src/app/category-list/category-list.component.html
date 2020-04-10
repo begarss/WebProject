@@ -1,14 +1,25 @@
+<section class="hero is-info" style="box-shadow: inset 0 8px 8px -8px rgba(0,0,0,.3), inset 0 -8px 8px -8px rgba(0,0,0,.3)">
+  <div class="hero-body">
+    <div class="container" style="text-align: left; font-size: 1.5rem">
+      <h3  class="title is-1" style="margin-bottom: 0.5rem;">
+        <strong>
+          Category : {{ category.name }}
+        </strong>
+      </h3>
+
+    </div>
+  </div>
+</section>
 <div class="container">
   <div class="columns is-3 ">
     <div class="column is-four-fifths">
-      <h1 class="title is-1" style="text-align: center; margin: 28px">Latest complaints</h1>
       <article *ngFor="let post of posts; index as postId" class="media" style="margin-top: 30px">
 
         <div class="media-content">
           <div class="content">
             <div class="info">
               <h3 class="title is-4" style="margin-bottom: -1.5rem;">
-                <strong><a routerLink="/post/{{post.id}}" [title]="post.title ">
+                <strong><a [title]="post.title " routerLink="/post/{{post.id}}">
                   {{ post.title }}
                 </a></strong>
               </h3>
@@ -20,7 +31,8 @@
 
             <!--        <img alt="" src="{{post.image}}">-->
 
-            <div ellipsis="...Read More" (ellipsis-click-more)=open(post.id.valueOf()) style="width: 80%; height: 50px">{{post.description}}</div>
+            <div (ellipsis-click-more)=open(post.id.valueOf()) ellipsis="...Read More"
+                 style="width: 80%; height: 50px">{{post.description}}</div>
 
           </div>
           <div class="likes">
@@ -38,8 +50,8 @@
 
     </div>
 
-    <div class="column" style= "margin-top: 30px">
-      <app-category >
+    <div class="column" style="margin-top: 30px">
+      <app-category>
 
       </app-category>
     </div>

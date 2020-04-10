@@ -18,16 +18,25 @@ export class CategoryListComponent implements OnInit {
   thumb = faThumbsUp;
   thumbD = faThumbsDown;
   posts: Post[];
+  category: Category;
 
   ngOnInit(): void {
-    this.getByCategory();
+    // this.getByCategory();
     console.log(this.route);
+    this.route.params.subscribe(
+      params => {
+        const id = +params.id;
+        this.categoriesService.getPostsByCat(id).subscribe(posts => this.posts = posts);
+        this.categoriesService.getCategory(id).subscribe(cat => this.category = cat);
+
+      }
+    );
   }
 
-  getByCategory(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.categoriesService.getPostsByCat(id).subscribe(posts => this.posts = posts);
-  }
+  // getByCategory(): void {
+  //   const id = +this.route.snapshot.paramMap.get('id');
+  //   this.categoriesService.getPostsByCat(id).subscribe(posts => this.posts = posts);
+  // }
 
   open(id: number): void {
     // this.location.go(`/post/${id}`);
