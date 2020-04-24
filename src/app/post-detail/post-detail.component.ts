@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Post} from '../posts';
+import {Post} from '../Models';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {PostService} from '../post.service';
