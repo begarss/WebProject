@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {Category, CATEGORY} from './category';
-import {Post} from './posts';
+import {Category} from './models';
+import {Post} from './models';
 import {catchError, filter, map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {PostService} from './post.service';
@@ -10,6 +10,8 @@ import {PostService} from './post.service';
   providedIn: 'root'
 })
 export class CategoriesService {
+  BASE_URL = 'http://127.0.0.1:8000';
+
   constructor(private http: HttpClient,
               private postService: PostService
   ) {
@@ -28,12 +30,12 @@ export class CategoriesService {
   //   return of(CATEGORY);
   // }
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.heroesUrl);
+    return this.http.get<Category[]>(`${this.BASE_URL}/api/categories/`);
   }
 
   getPostsByCat(id: number) {
     this.posts = this.postService.getPosts();
     // tslint:disable-next-line:triple-equals
-    return this.posts.pipe(map(posts => posts.filter(res => res.categoryId == id)));
+    return this.posts.pipe(map(posts => posts.filter(res => res.category.id == id)));
   }
 }

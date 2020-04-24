@@ -6,33 +6,35 @@
     <h1 style="font-size: xx-large; text-align: center">Add new complaint</h1>
 
     <form>
-      <div class="item">
-        <input #title class="input is-rounded"
-               id="article" name="article"
+      <div class="item">{{title}}
+        <input [(ngModel)]="title"
+               class="input is-rounded" id="article"
+               name="article"
                placeholder="Article Title" type="text">
       </div>
 
       <div class="item">
-        <textarea #details class="textarea" name="blog"
+        <textarea #details [(ngModel)]="description" class="textarea"
+                  name="blog"
                   placeholder="Write your article (in markdown)"></textarea>
       </div>
       <div class="item">
         <div class="select is-rounded">
-          <select #cat>
-            <option >Select category</option>
-            <option value="1">Teachers</option>
-            <option value="2">Education</option>
-            <option value="3">Administration</option>
-            <option value="4">Canteen</option>
-            <option value="5">Library</option>
-            <option value="6">Students</option>
-          </select>
+          <label>
+            {{category_id}}
+
+            <select  >
+              <option>Select category</option>
+              <option *ngFor="let category of categories"
+                      [value]="category.catName" [(ngModel)]="title">{{category.catName}}</option>
+            </select>
+          </label>
         </div>
       </div>
 
       <div class="field is-grouped is-grouped-centered" style="margin-top: 2rem">
         <p class="control">
-          <a (click)="add(title.value, details.value, 'anonim',  cat.value); "
+          <a (click)="add(); "
              class="button is-info">
             Submit
           </a>

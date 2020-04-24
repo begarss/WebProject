@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Post} from './posts';
+import {Post} from './models';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 
@@ -9,6 +9,7 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class PostService {
+  BASE_URL = 'http://127.0.0.1:8000';
 
   constructor(
     private http: HttpClient,
@@ -25,7 +26,7 @@ export class PostService {
 
   /** GET heroes from the server */
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.heroesUrl)
+    return this.http.get<Post[]>(`${this.BASE_URL}/api/posts/`)
       .pipe(tap(_ => this.log('fetched heroes')), catchError(this.handleError<Post[]>('getPosts', [])));
   }
 
@@ -59,7 +60,7 @@ export class PostService {
   }
 
   addPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(this.heroesUrl, post, this.httpOptions).pipe(
+    return this.http.post<Post>(`${this.BASE_URL}/api/posts/`, post, this.httpOptions).pipe(
       tap((newPost: Post) => this.log(`added post w/ id=${newPost.id}`)),
       catchError(this.handleError<Post>('addPost'))
     );

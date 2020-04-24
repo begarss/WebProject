@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './in-memory-data.service';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {RouterModule} from '@angular/router';
@@ -20,6 +19,7 @@ import {AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import { SigninComponent } from './signin/signin.component';
     ContactComponent,
     LoginComponent,
     SigninComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,8 +50,7 @@ import { SigninComponent } from './signin/signin.component';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
 // and returns simulated server responses.
 // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}),
+
     EllipsisModule
   ],
   providers: [],

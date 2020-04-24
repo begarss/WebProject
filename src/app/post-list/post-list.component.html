@@ -10,7 +10,7 @@
           </a></strong>
         </h3>
         <br >
-        <span class="date">{{post.date}} | <strong>{{post.author}}</strong> | <strong  >{{ post.categoryId }}</strong></span>
+        <span class="date">{{post.date}} | <strong>{{post.author.username}}</strong> | <strong  >{{ post.category.catName }}</strong></span>
 
       </div>
       <br>
@@ -23,10 +23,10 @@
     <div class="likes">
 
 
-      <fa-icon [icon]="thumb" style="margin-right: 10px; color: #2e99dd"></fa-icon>
-      <label *ngIf="post.likes " style="margin-right: 10px">{{post.likes}}</label>
-      <fa-icon [icon]="thumbD" style="margin-right: 10px; color: #fc4820"></fa-icon>
-      <label>{{post.dislikes}}</label>
+<!--      <fa-icon [icon]="thumb" style="margin-right: 10px; color: #2e99dd"></fa-icon>-->
+<!--      <label *ngIf="post.likes " style="margin-right: 10px">{{post.likes}}</label>-->
+<!--      <fa-icon [icon]="thumbD" style="margin-right: 10px; color: #fc4820"></fa-icon>-->
+<!--      <label>{{post.dislikes}}</label>-->
     </div>
   </div>
 

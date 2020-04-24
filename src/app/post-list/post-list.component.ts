@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Post} from '../posts';
+import {Post} from '../models';
 import {PostService} from '../post.service';
 import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 import {Location} from '@angular/common';
-import {Category} from '../category';
+import {Category} from '../models';
 import {CategoriesService} from '../categories.service';
 import {map} from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-  posts: Post[];
+  posts: Post[] = [];
   categories: Category[];
   thumb = faThumbsUp;
   thumbD = faThumbsDown;
