@@ -10,6 +10,7 @@
   </div>
   <div class="field" style= "padding-top: 20px">
     <div class="control">
+      {{register.username}}
       <input [(ngModel)]="register.username" class="input is-medium" type="name" placeholder="Username">
     </div>
   </div>
@@ -22,14 +23,10 @@
     </p>
   </div>
   <div class="buttons" class="field is-grouped is-grouped-right">
-  <a (click)="registerUser" class="button is-info">
+  <a (click)="registerUser()" class="button is-info">
     <strong>Sign up</strong>
   </a>
   </div>
 
 </div>
-<div>
-  <app-footer>
 
-  </app-footer>
-</div>

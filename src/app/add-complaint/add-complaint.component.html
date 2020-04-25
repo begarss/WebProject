@@ -5,9 +5,9 @@
 
     <h1 style="font-size: xx-large; text-align: center">Add new complaint</h1>
 
-    <form>
+    <form id="data">
       <div class="item">{{title}}
-        <input [(ngModel)]="title"
+        <input  [(ngModel)]="title"
                class="input is-rounded" id="article"
                name="article"
                placeholder="Article Title" type="text">
@@ -19,14 +19,15 @@
                   placeholder="Write your article (in markdown)"></textarea>
       </div>
       <div class="item">
-        <div class="select is-rounded">
-          <label>
-            {{category_id}}
+        <div class="select ">
 
-            <select  >
-              <option>Select category</option>
-              <option *ngFor="let category of categories"
-                      [value]="category.catName" [(ngModel)]="title">{{category.catName}}</option>
+
+          <label>
+            <select (ngModelChange)="toNumber()" [(ngModel)]="category_id" form="data" name="category" type="number">
+              <option selected="selected">Select category</option>
+              <option *ngFor="let category of categories" [ngValue]="category.id">
+                {{category.catName}}
+              </option>
             </select>
           </label>
         </div>
@@ -34,7 +35,7 @@
 
       <div class="field is-grouped is-grouped-centered" style="margin-top: 2rem">
         <p class="control">
-          <a (click)="add(); "
+          <a (click)="add(title,description,category_id,1); title='';description='';category_id=0 "
              class="button is-info">
             Submit
           </a>

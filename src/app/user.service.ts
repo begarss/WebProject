@@ -11,3 +11,4 @@ export class UserService {
     return this.http.post('http://127.0.0.1:8000/api/users/', userData);
   }
 }
+
