@@ -29,7 +29,8 @@
     "ngx-ellipsis": "^2.1.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "jwt-decode": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",

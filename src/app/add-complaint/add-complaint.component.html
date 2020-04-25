@@ -34,8 +34,8 @@
       </div>
 
       <div class="field is-grouped is-grouped-centered" style="margin-top: 2rem">
-        <p class="control">
-          <a (click)="add(title,description,category_id,1); title='';description='';category_id=0 "
+        <p  class="control">
+          <a  (click)="add(title,description,category_id,Number(UserId$)); title='';description='';category_id=0 "
              class="button is-info">
             Submit
           </a>

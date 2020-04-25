@@ -4,6 +4,8 @@ import {PostService} from '../post.service';
 import {Post, Category} from '../models';
 import DateTimeFormat = Intl.DateTimeFormat;
 import {CategoriesService} from "../categories.service";
+import {BehaviorSubject, Observable} from "rxjs";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-add-complaint',
@@ -15,11 +17,13 @@ export class AddComplaintComponent implements OnInit {
   categories: Category[];
 
   constructor(private location: Location, private postService: PostService, private categoriesService: CategoriesService
-  ) {
+  , private userService:UserService) {
   }
 
   ngOnInit(): void {
     this.getCategories();
+    this.UserId$ = localStorage.getItem("userid");
+    console.log(this.UserId$);
 
   }
 
@@ -33,7 +37,7 @@ export class AddComplaintComponent implements OnInit {
 
   title: string;
   description = '';
-  author_id = 1;
+  UserId$ : string;
   category_id: number;
 
   toNumber() {
@@ -60,4 +64,7 @@ export class AddComplaintComponent implements OnInit {
   //   console.log(this.paperModel);
   //   //this.paperService.create(this.paperService);
   // }
+  Number(UserId: string) {
+    return +UserId;
+  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from '../post.service';
+import {Observable} from "rxjs";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-header',
@@ -9,36 +11,21 @@ import {PostService} from '../post.service';
 export class HeaderComponent implements OnInit {
   title = 'servicesGroup2';
 
-  logged = false;
+  LoginStatus$ : Observable<boolean>;
 
-  username = '';
-  password = '';
+  UserName$ : Observable<string>;
 
-  constructor(private postService: PostService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    let token = localStorage.getItem('token');
-    if (token) {
-      this.logged = true;
-    }
+    this.LoginStatus$ = this.userService.isLoggesIn;
+
+    this.UserName$ = this.userService.currentUserName;
   }
 
-  login() {
-    this.postService.login(this.username, this.password)
-      .subscribe(res => {
-
-        localStorage.setItem('token', res.token);
-
-        this.logged = true;
-
-        this.username = '';
-        this.password = '';
-      });
-  }
-
-  logout() {
-    localStorage.clear();
-    this.logged = false;
+  onLogout()
+  {
+    this.userService.logout();
   }
 
 }

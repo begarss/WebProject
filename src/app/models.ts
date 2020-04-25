@@ -34,5 +34,7 @@ export class Post {
 
 export class LoginResponse {
   token: string;
+  username: string;
+  userid:number;
 }
 

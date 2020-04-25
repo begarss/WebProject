@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from '../post.service';
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: UserService) {}
 
   ngOnInit() {
     let token = localStorage.getItem('token');
