@@ -31,3 +31,8 @@ export class Post {
   author_id:number;
   category_id: number;
 }
+
+export class LoginResponse {
+  token: string;
+}
+

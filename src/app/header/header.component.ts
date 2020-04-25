@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PostService} from '../post.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  title = 'servicesGroup2';
 
-  constructor() { }
+  logged = false;
 
-  ngOnInit(): void {
+  username = '';
+  password = '';
+
+  constructor(private postService: PostService) {}
+
+  ngOnInit() {
+    let token = localStorage.getItem('token');
+    if (token) {
+      this.logged = true;
+    }
+  }
+
+  login() {
+    this.postService.login(this.username, this.password)
+      .subscribe(res => {
+
+        localStorage.setItem('token', res.token);
+
+        this.logged = true;
+
+        this.username = '';
+        this.password = '';
+      });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.logged = false;
   }
 
 }

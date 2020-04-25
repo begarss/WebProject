@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Post} from './models';
+import {Post, LoginResponse} from './models';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 
@@ -64,6 +64,13 @@ export class PostService {
       tap((newPost: Post) => this.log(`added post w/ id=${newPost.id}`)),
       catchError(this.handleError<Post>('addPost'))
     );
+  }
+
+  login(username, password): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.BASE_URL}/api/login/`, {
+      username,
+      password
+    });
   }
 
 }
