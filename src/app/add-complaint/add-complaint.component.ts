@@ -52,7 +52,7 @@ export class AddComplaintComponent implements OnInit {
     if (!this.title) {
       return;
     }
-    this.postService.addPost(new Post(title,description,category_id,author_id))
+    this.postService.addPost(new Post(title,description,category_id,author_id,false))
       .subscribe(post => {
         this.posts.push(post);
 

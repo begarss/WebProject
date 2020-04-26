@@ -22,7 +22,11 @@
         <a *ngIf="(LoginStatus$ | async) as LoginStatus" class="navbar-item" routerLink="add">
           <label *ngIf="LoginStatus"> Add complaint</label>
         </a>
-
+        <ng-container *ngIf="(LoginStatus$ | async) as LoginStatus">
+          <a *ngIf="(IsAdmin$ | async ) as admin" class="navbar-item" routerLink="admin">
+            <label *ngIf="admin"> Admin panel</label>
+          </a>
+        </ng-container>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
             More

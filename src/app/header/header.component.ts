@@ -14,17 +14,25 @@ export class HeaderComponent implements OnInit {
   LoginStatus$ : Observable<boolean>;
 
   UserName$ : Observable<string>;
-
+  IsAdmin$ : Observable<boolean>;
+  lol:boolean;
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.LoginStatus$ = this.userService.isLoggesIn;
+    this.IsAdmin$ = this.userService.currentUserIsAdmin;
+    // this.lol=this.userService.checkAdmin();
+    console.log('admin'+this.IsAdmin$);
+    console.log('login'+this.LoginStatus$);
 
     this.UserName$ = this.userService.currentUserName;
   }
 
   onLogout()
   {
+    // this.lol=this.userService.checkAdmin();
+    // window.location.reload();
+
     this.userService.logout();
   }
 

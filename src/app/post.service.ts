@@ -29,11 +29,14 @@ export class PostService {
     return this.http.get<Post[]>(`${this.BASE_URL}/api/posts/`)
       .pipe(tap(_ => this.log('fetched heroes')), catchError(this.handleError<Post[]>('getPosts', [])));
   }
-
+  getAllPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.BASE_URL}/api/admin/`)
+      .pipe(tap(_ => this.log('fetched heroes')), catchError(this.handleError<Post[]>('getPosts', [])));
+  }
   /** GET hero by id. Will 404 if id not found */
   getPost(id: number): Observable<Post> {
     const url = `${this.heroesUrl}/${id}`;
-    return this.http.get<Post>(url).pipe(
+    return this.http.get<Post>(`${this.BASE_URL}/api/posts/${id}/`).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Post>(`getHero id=${id}`))
     );
@@ -65,7 +68,18 @@ export class PostService {
       catchError(this.handleError<Post>('addPost'))
     );
   }
-
+  deletePost( id:number): Observable<Post> {
+    return this.http.delete<Post>(`${this.BASE_URL}/api/admin/${id}`).pipe(
+      tap((newPost: Post) => this.log(`added post w/ id=${newPost.id}`)),
+      catchError(this.handleError<Post>('addPost'))
+    );
+  }
+  EditPost(post: Post, id:number): Observable<Post> {
+    return this.http.put<Post>(`${this.BASE_URL}/api/admin/${id}/`, post, this.httpOptions).pipe(
+      tap((newPost: Post) => this.log(`added post w/ id=${newPost.id}`)),
+      catchError(this.handleError<Post>('addPost'))
+    );
+  }
   login(username, password): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.BASE_URL}/api/login/`, {
       username,

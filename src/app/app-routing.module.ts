@@ -10,12 +10,15 @@ import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
 import {SigninComponent} from './signin/signin.component';
 import {LoginComponent} from './login/login.component';
+import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'post/:id', component: PostDetailComponent},
   {path: 'add', component: AddComplaintComponent},
+  {path: 'admin', component: AdminPanelComponent},
+
   { path: 'categoryPostsList/:id', component: CategoryListComponent },
   {path: 'about', component: AboutComponent},
   {path: 'signin', component: SigninComponent},

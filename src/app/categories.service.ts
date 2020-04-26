@@ -21,9 +21,8 @@ export class CategoriesService {
   private heroesUrl = 'api/categories';
 
   getCategory(id: number): Observable<Category> {
-    const url = `${this.heroesUrl}/${id}`;
 
-    return this.http.get<Category>(url);
+    return this.http.get<Category>(`${this.BASE_URL}/api/categories/${id}`);
   }
 
   // getCategories(): Observable<Category[]> {
@@ -33,9 +32,11 @@ export class CategoriesService {
     return this.http.get<Category[]>(`${this.BASE_URL}/api/categories/`);
   }
 
-  getPostsByCat(id: number) {
-    this.posts = this.postService.getPosts();
+  getPostsByCat(id: number): Observable<Post[]> {
+    // this.posts = this.postService.getPosts();
     // tslint:disable-next-line:triple-equals
-    return this.posts.pipe(map(posts => posts.filter(res => res.category.id == id)));
+    // return this.posts.pipe(map(posts => posts.filter(res => res.category.id == id)));
+    return this.http.get<Post[]>(`${this.BASE_URL}/api/categories/${id}/posts/`);
+
   }
 }

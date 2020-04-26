@@ -1,7 +1,8 @@
-<section class="hero is-info" style="box-shadow: inset 0 8px 8px -8px rgba(0,0,0,.3), inset 0 -8px 8px -8px rgba(0,0,0,.3)">
+<section class="hero is-info"
+         style="box-shadow: inset 0 8px 8px -8px rgba(0,0,0,.3), inset 0 -8px 8px -8px rgba(0,0,0,.3)">
   <div class="hero-body">
     <div class="container" style="text-align: left; font-size: 1.5rem">
-      <h3  class="title is-1" style="margin-bottom: 0.5rem;">
+      <h3 class="title is-1" style="margin-bottom: 0.5rem;">
         <strong>
           Category : {{ category.catName }}
         </strong>
@@ -24,7 +25,8 @@
                 </a></strong>
               </h3>
               <br>
-              <span class="date">{{post.date}} | <strong>{{post.author.username}}</strong> | <strong>{{post.category.catName}}</strong></span>
+              <span class="date">{{post.date}}
+                | <strong>{{post.author.username}}</strong> | <strong>{{post.category.catName}}</strong></span>
 
             </div>
             <br>
@@ -38,10 +40,10 @@
           <div class="likes">
 
 
-<!--            <fa-icon [icon]="thumb" style="margin-right: 10px; color: #2e99dd"></fa-icon>-->
-<!--            <label *ngIf="post.likes " style="margin-right: 10px">{{post.likes}}</label>-->
-<!--            <fa-icon [icon]="thumbD" style="margin-right: 10px; color: #fc4820"></fa-icon>-->
-<!--            <label>{{post.dislikes}}</label>-->
+            <!--            <fa-icon [icon]="thumb" style="margin-right: 10px; color: #2e99dd"></fa-icon>-->
+            <!--            <label *ngIf="post.likes " style="margin-right: 10px">{{post.likes}}</label>-->
+            <!--            <fa-icon [icon]="thumbD" style="margin-right: 10px; color: #fc4820"></fa-icon>-->
+            <!--            <label>{{post.dislikes}}</label>-->
           </div>
         </div>
 
@@ -51,9 +53,9 @@
     </div>
 
     <div class="column" style="margin-top: 30px">
-      <app-category>
+            <app-category>
 
-      </app-category>
+            </app-category>
     </div>
   </div>
 </div>

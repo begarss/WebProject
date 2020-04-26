@@ -17,7 +17,7 @@ export class CategoryListComponent implements OnInit {
 
   thumb = faThumbsUp;
   thumbD = faThumbsDown;
-  posts: Post[];
+  posts: Post[] = [];
   category: Category;
 
   ngOnInit(): void {
@@ -31,6 +31,14 @@ export class CategoryListComponent implements OnInit {
 
       }
     );
+    // this.getPosts()
+  }
+
+  getPosts() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.categoriesService.getCategory(id).subscribe(cat => this.category = cat);
+
+    this.categoriesService.getPostsByCat(id).subscribe(data => this.posts = data);
   }
 
   // getByCategory(): void {

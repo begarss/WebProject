@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="tabs" style="height: 100%">
+    <ul>
+      <li><a (click)="all()">All posts</a></li>
+      <li><a>Categories</a></li>
+      <li><a>Users</a></li>
+    </ul>
+  </div>
+
+  <h1 class="title is-1" style="text-align: center; margin: 28px">All complaints</h1>
+  <div *ngIf="allClicked">
+    <article *ngFor="let post of posts; index as postId" class="media" style="margin-top: 30px">
+
+      <div class="media-content">
+        <div class="content">
+          <div class="info">
+            <h3 class="title is-4" style="margin-bottom: -1.5rem;">
+              <strong><a (click)=getPost(post.id) [title]="post.title ">
+                {{ post.title }}
+              </a></strong>
+            </h3>
+            <br>
+            <span class="date">{{post.date}}
+              | <strong>{{post.author.username}}</strong> | <strong>{{ post.category.catName }}</strong></span>
+
+          </div>
+          <br>
+
+          <!--        <img alt="" src="{{post.image}}">-->
+
+          <div (ellipsis-click-more)=open(post.id.valueOf()) ellipsis="...Read More"
+               style="width: 80%; height: 50px">{{post.description}}</div>
+
+        </div>
+        <div class="likes">
+
+
+          <!--      <fa-icon [icon]="thumb" style="margin-right: 10px; color: #2e99dd"></fa-icon>-->
+          <!--      <label *ngIf="post.likes " style="margin-right: 10px">{{post.likes}}</label>-->
+          <!--      <fa-icon [icon]="thumbD" style="margin-right: 10px; color: #fc4820"></fa-icon>-->
+          <!--      <label>{{post.dislikes}}</label>-->
+        </div>
+      </div>
+
+    </article>
+  </div>
+  <div *ngIf="postClicked" class="row">
+
+    <h1 style="font-size: xx-large; text-align: center">Edit complaint</h1>
+
+    <form id="data">
+      <div class="item">
+        <input
+          [(ngModel)]="post.title"
+          class="input is-rounded" id="article"
+          name="article"
+          placeholder="{{post.title}}" type="text">
+      </div>
+
+      <div class="item">
+        <textarea #details class="textarea"
+                  name="blog"
+                  [(ngModel)]="post.description"
+                  placeholder="Write your article (in markdown)">{{post.description}}</textarea>
+      </div>
+      <div class="item">
+        <div class="select ">
+          <label>
+            <select (ngModelChange)="toNumber()" [(ngModel)]="post.category_id" form="data" name="category"
+                    type="number">
+              <option selected >select</option>
+              <option *ngFor="let category of categories" [ngValue]="category.id">
+                {{category.catName}}
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="item">
+        <div *ngIf="post.is_published==true"><span
+          style="font-weight: bold; margin-right: 20px; color: rgb(5, 187, 87);">Post will be published  </span></div>
+
+        <label style="font-weight: bold; margin-bottom: 20px;">Favourite:
+          <input (click)="publ()" [(ngModel)]="post.is_published" type="checkbox">
+        </label>
+      </div>
+
+      <div class="field is-grouped is-grouped-centered" style="margin-top: 2rem">
+        <p class="control">
+          <a
+            (click)="edit(post.title,post.description,post.category.id,post.author.id,post.is_published,post.id); title='';description='';category_id=0 "
+            class="button is-info">
+            Submit
+          </a>
+        </p>
+        <p class="control">
+          <a class="button is-light">
+            Cancel
+          </a>
+        </p>
+        <p class="control">
+          <a class="button is-light" (click)="deletePost(post.id)">
+            Delete
+          </a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {LoginResponse} from "./models";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
+
 // import * as jwt_decode from "jwt-decode";
 
 @Injectable({
@@ -19,6 +20,8 @@ export class UserService {
   // User related properties
   private loginStatus = new BehaviorSubject<boolean>(this.checkLoginStatus());
   private UserName = new BehaviorSubject<string>(localStorage.getItem('username'));
+  private isAdmin = new BehaviorSubject<boolean>(this.checkAdmin());
+
   private UserId = (localStorage.getItem('userid'));
 
   registerUser(userData): Observable<any> {
@@ -40,9 +43,11 @@ export class UserService {
           localStorage.setItem('loginStatus', '1');
           localStorage.setItem('jwt', result.token);
           localStorage.setItem('username', result.username);
+          localStorage.setItem('isSuper', JSON.stringify(result.is_superuser));
+
           localStorage.setItem('userid', String(result.userid));
           this.router.navigate(['/home']);
-
+          this.isAdmin.next(JSON.parse(localStorage.getItem('isSuper')));
           this.UserName.next(localStorage.getItem('username'));
           // this.UserId.next(localStorage.getItem('userRole'));
         }
@@ -56,15 +61,17 @@ export class UserService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('username');
     localStorage.removeItem('userid');
+    localStorage.removeItem('isSuper');
     localStorage.removeItem('token');
     localStorage.setItem('loginStatus', '0');
-    this.router.navigate(['/login']);
+    localStorage.setItem('isSuper','false');
     console.log("Logged Out Successfully");
   }
 
   checkLoginStatus(): boolean {
 
     var loginCookie = localStorage.getItem("loginStatus");
+    console.log(loginCookie + 'cok');
 
     if (loginCookie == "1") {
       if (localStorage.getItem('jwt') === null || localStorage.getItem('jwt') === undefined) {
@@ -84,6 +91,19 @@ export class UserService {
     return false;
   }
 
+  checkAdmin(): boolean {
+    var status = localStorage.getItem("isSuper");
+    var value = JSON.parse(status);
+    console.log(value + Date.now());
+    if (value == true) {
+      if (localStorage.getItem('isSuper') === null || localStorage.getItem('isSuper') === undefined) {
+        return false;
+      }
+      return true
+    }
+    return false
+  }
+
   get isLoggesIn() {
     return this.loginStatus.asObservable();
   }
@@ -95,6 +115,11 @@ export class UserService {
   get currentUserId() {
     return this.UserId;
   }
+
+  get currentUserIsAdmin() {
+    return this.isAdmin.asObservable();
+  }
+
 
 }
 
