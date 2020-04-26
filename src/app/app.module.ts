@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     SigninComponent,
     FooterComponent,
     AdminPanelComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

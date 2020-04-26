@@ -27,6 +27,7 @@ export class Post {
   description: string;
   category: Category;
   is_published: boolean;
+  fav:boolean;
   date: DateTimeFormat;
   author: User;
   author_id:number;
@@ -38,5 +39,19 @@ export class LoginResponse {
   username: string;
   userid:number;
   is_superuser:boolean;
+}
+
+export class Favorites {
+  constructor(post_id:number,author_id:number,is_favorite:boolean) {
+    this.author_id=author_id;
+    this.is_favorite=is_favorite;
+    this.post_id=post_id;
+  }
+  id:number;
+  is_favorite:boolean
+  post_id:number;
+  author_id:number;
+  post:Post;
+  author:User;
 }
 

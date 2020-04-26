@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Post, LoginResponse} from './models';
+import {Post, LoginResponse, Favorites} from './models';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 
@@ -33,6 +33,10 @@ export class PostService {
     return this.http.get<Post[]>(`${this.BASE_URL}/api/admin/`)
       .pipe(tap(_ => this.log('fetched heroes')), catchError(this.handleError<Post[]>('getPosts', [])));
   }
+  getUserPosts(id:number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.BASE_URL}/api/profile/${id}/`)
+      .pipe(tap(_ => this.log('fetched heroes')), catchError(this.handleError<Post[]>('getPosts', [])));
+  }
   /** GET hero by id. Will 404 if id not found */
   getPost(id: number): Observable<Post> {
     const url = `${this.heroesUrl}/${id}`;
@@ -60,6 +64,28 @@ export class PostService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+  addToFav(post: Favorites): Observable<Favorites> {
+    return this.http.post<Favorites>(`${this.BASE_URL}/api/fav/`, post, this.httpOptions).pipe(
+      tap((newPost: Favorites) => this.log(`added post w/ id=${newPost.id}`)),
+      catchError(this.handleError<Favorites>('addPost'))
+    );
+  }
+  getOneFav(id: number): Observable<Favorites[]> {
+    return this.http.get<Favorites[]>(`${this.BASE_URL}/api/fav/${id}/`).pipe(
+      tap(_ => this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Favorites[]>(`getHero id=${id}`))
+    );
+  }
+  deleteOneFav(id: number,id2:number): Observable<Favorites> {
+    return this.http.delete<Favorites>(`${this.BASE_URL}/api/fav/${id}/${id2}/`).pipe(
+      tap(_ => this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Favorites>(`getHero id=${id}`))
+    );
+  }
+  getFavs(): Observable<Favorites[]> {
+    return this.http.get<Favorites[]>(`${this.BASE_URL}/api/fav/`)
+      .pipe(tap(_ => this.log('fetched heroes')), catchError(this.handleError<Favorites[]>('getPosts', [])));
   }
 
   addPost(post: Post): Observable<Post> {

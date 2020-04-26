@@ -1,32 +1,46 @@
 <h1 class="title is-1" style="text-align: center; margin: 28px">Latest complaints</h1>
 <article *ngFor="let post of posts; index as postId" class="media" style="margin-top: 30px">
 
-  <div class="media-content" >
+  <div class="media-content">
     <div class="content">
-      <div class="info" >
+      <div class="info">
         <h3 class="title is-4" style="margin-bottom: -1.5rem;">
-          <strong><a routerLink="/post/{{post.id}}" [title]="post.title ">
+          <strong><a [title]="post.title " routerLink="/post/{{post.id}}">
             {{ post.title }}
           </a></strong>
         </h3>
-        <br >
-        <span class="date">{{post.date}} | <strong>{{post.author.username}}</strong> | <strong  >{{ post.category.catName }}</strong></span>
+        <br>
+        <span class="date">{{post.date}}
+          | <strong>{{post.author.username}}</strong> | <strong>{{ post.category.catName }}</strong></span>
 
       </div>
       <br>
 
       <!--        <img alt="" src="{{post.image}}">-->
 
-      <div ellipsis="...Read More" (ellipsis-click-more)=open(post.id.valueOf()) style="width: 80%; height: 50px">{{post.description}}</div>
+      <div (ellipsis-click-more)=open(post.id.valueOf()) ellipsis="...Read More"
+           style="width: 80%; height: 50px">{{post.description}}</div>
 
     </div>
     <div class="likes">
+      <ng-container *ngIf="(LoginStatus$ | async) as LoginStatus">
+        <ng-container *ngIf="(UserId$ | async)as id ">
+          <a (click)="AddToFav(Number(id),true,post.id) "  >
+            <fa-icon
+              [icon]="star"
+              style="margin-right: 10px; color: #2e99dd"></fa-icon>
+          </a>
+<!--          <label *ngIf="this.liked" style="color: aquamarine">Added to favorites</label>-->
+          <a (click)="delete(Number(id),post.id)">
+            <fa-icon [icon]="star" style="margin-right: 10px; color: #dd7f35"></fa-icon>
+          </a>
+<!--          <label *ngIf="!this.liked" style="color: #ff253a">Removed from favorites</label>-->
 
-
-<!--      <fa-icon [icon]="thumb" style="margin-right: 10px; color: #2e99dd"></fa-icon>-->
-<!--      <label *ngIf="post.likes " style="margin-right: 10px">{{post.likes}}</label>-->
-<!--      <fa-icon [icon]="thumbD" style="margin-right: 10px; color: #fc4820"></fa-icon>-->
-<!--      <label>{{post.dislikes}}</label>-->
+        </ng-container>
+      </ng-container>
+      <!--      <label *ngIf="post.likes " style="margin-right: 10px">{{post.likes}}</label>-->
+      <!--      <fa-icon [icon]="thumbD" style="margin-right: 10px; color: #fc4820"></fa-icon>-->
+      <!--      <label>{{post.dislikes}}</label>-->
     </div>
   </div>
 

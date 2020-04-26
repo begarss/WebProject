@@ -59,11 +59,14 @@
             <a *ngIf="!(LoginStatus$ | async) as LoginStatus" [routerLink]="['/login']" class="button is-light">
               <strong *ngIf="LoginStatus">Log in</strong>
             </a>
-            <label *ngIf="(LoginStatus$ | async) as LoginStatus">
-              <a *ngIf="(UserName$ | async)as UserName" class="navbar-item has-text-black is-rounded">
-                {{UserName | uppercase}}
-              </a>
-            </label>
+            <ng-container *ngIf="(UserId$ | async)as id ">
+              <label *ngIf="(LoginStatus$ | async) as LoginStatus">
+                <a *ngIf="(UserName$ | async)as UserName " class="navbar-item has-text-black is-rounded"
+                   routerLink="/profile/{{Number(id)}}">
+                  {{UserName | uppercase}}
+                </a>
+              </label>
+            </ng-container>
             <label *ngIf="(LoginStatus$ | async) as LoginStatus">
               <a (click)="onLogout()" *ngIf="LoginStatus" class="button is-danger">
                 Log out

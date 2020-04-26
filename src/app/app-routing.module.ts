@@ -11,6 +11,7 @@ import {ContactComponent} from './contact/contact.component';
 import {SigninComponent} from './signin/signin.component';
 import {LoginComponent} from './login/login.component';
 import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
+import {UserProfileComponent} from "./user-profile/user-profile.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'post/:id', component: PostDetailComponent},
   {path: 'add', component: AddComplaintComponent},
   {path: 'admin', component: AdminPanelComponent},
+  {path: 'profile/:id', component: UserProfileComponent},
 
   { path: 'categoryPostsList/:id', component: CategoryListComponent },
   {path: 'about', component: AboutComponent},

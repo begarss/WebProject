@@ -22,7 +22,7 @@ export class UserService {
   private UserName = new BehaviorSubject<string>(localStorage.getItem('username'));
   private isAdmin = new BehaviorSubject<boolean>(this.checkAdmin());
 
-  private UserId = (localStorage.getItem('userid'));
+  private UserId = new BehaviorSubject<string>(localStorage.getItem('userid'));
 
   registerUser(userData): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/users/', userData);
@@ -49,7 +49,7 @@ export class UserService {
           this.router.navigate(['/home']);
           this.isAdmin.next(JSON.parse(localStorage.getItem('isSuper')));
           this.UserName.next(localStorage.getItem('username'));
-          // this.UserId.next(localStorage.getItem('userRole'));
+          this.UserId.next(localStorage.getItem('userid'));
         }
         return result;
       })
@@ -113,7 +113,7 @@ export class UserService {
   }
 
   get currentUserId() {
-    return this.UserId;
+    return this.UserId.asObservable();
   }
 
   get currentUserIsAdmin() {
